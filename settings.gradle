@@ -1,13 +1,13 @@
 pluginManagement {
 	repositories {
 		gradlePluginPortal()
-		maven { url 'https://repo.spring.io/plugins-release' }
+		maven { url "https://maven.aliyun.com/repository/spring-plugin" }
 	}
 }
 
 plugins {
 	id "com.gradle.enterprise" version "3.6.1"
-	id "io.spring.ge.conventions" version "0.0.7"
+	// id "io.spring.ge.conventions" version "0.0.7"
 }
 
 include "spring-aop"
@@ -35,12 +35,15 @@ include "spring-webflux"
 include "spring-webmvc"
 include "spring-websocket"
 include "framework-bom"
+
 include "integration-tests"
 
 rootProject.name = "spring"
 rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }
+
+
 
 settings.gradle.projectsLoaded {
 	gradleEnterprise {
@@ -56,3 +59,5 @@ settings.gradle.projectsLoaded {
 		}
 	}
 }
+include 'learn-springsource-test'
+

@@ -55,7 +55,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	 * and are free to return their own transaction data Object.
 	 * @see javax.persistence.EntityTransaction#begin
 	 * @see org.springframework.transaction.InvalidIsolationLevelException
-	 * @see #cleanupTransaction
+	 * @see #cleanupTransaction 开始事务
 	 */
 	@Override
 	@Nullable

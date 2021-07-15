@@ -1,0 +1,4 @@
+com/dmai/spring/MainTest.java
+ com.dmai.spring.MainTest
+com/dmai/spring/bean/Person.java
+ com.dmai.spring.bean.Person
