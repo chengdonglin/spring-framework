@@ -1,4 +1,8 @@
+com/dmai/spring/config/MainConfig.java
+ com.dmai.spring.config.MainConfig
 com/dmai/spring/MainTest.java
  com.dmai.spring.MainTest
+com/dmai/spring/AnnotationMainTest.java
+ com.dmai.spring.AnnotationMainTest
 com/dmai/spring/bean/Person.java
  com.dmai.spring.bean.Person
