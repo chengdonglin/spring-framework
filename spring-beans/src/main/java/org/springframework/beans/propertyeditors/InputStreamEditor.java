@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
  * <p>Note that such streams usually do not get closed by Spring itself!
  *
  * @author Juergen Hoeller
- * @since 1.0.1
+ * @since 1.0.1  将字符串解析并转换成InputStream的一个编辑器
  * @see java.io.InputStream
  * @see org.springframework.core.io.ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
