@@ -6,4 +6,7 @@
 	<bean class="com.dmai.spring.bean.Person" id="person">
 		<property name="name" value="lcd"></property>
 	</bean>
+	<bean id="myBeanFactoryProcessor" class="com.dmai.spring.bean.MyBeanFactoryPostProcessor" >
+
+	</bean>
 </beans>

@@ -762,9 +762,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @param beanFactory the bean factory used by the application context
 	 */
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+		/**
+		 * 在ApplicationContext初始化完成之后，可以通过该方法来修改ApplicationContext内部的beanFactory
+		 * 因为这个时候，所有的bean的BeanDefination已经加载到了beanFactory容器中了，但是这些bean都还没有实例化，
+		 * 可以通过该方法中注册一些后处理器或者直接修改bean信息
+		 */
 	}
 
 	/**
+	 * 实例化并且调用所有已经注册了的BeanFactoryPostProcessor
 	 * Instantiate and invoke all registered BeanFactoryPostProcessor beans,
 	 * respecting explicit order if given.
 	 * <p>Must be called before singleton instantiation.
