@@ -547,42 +547,56 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			StartupStep contextRefresh = this.applicationStartup.start("spring.context.refresh");
 
 			// Prepare this context for refreshing.
+			// 初始化上下文信息
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			// 初始化初级容器BeanFactory,并解析xml
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			// 对spring容器beanFactory做一些准备
 			prepareBeanFactory(beanFactory);
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
+				// 空实现，留给子类去扩展实现
+				// 用于注册特殊的后处理器来加载一些bean
 				postProcessBeanFactory(beanFactory);
 
 				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
 				// Invoke factory processors registered as beans in the context.
+				// 执行BeanFactory即spring容器级别的后处理器
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				// 在Spring容器中，注册bean的后处理器
 				registerBeanPostProcessors(beanFactory);
 				beanPostProcess.end();
 
 				// Initialize message source for this context.
+				// 在Spring中，初始化消息MessageSource
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				// 在Spring中，初始化事件广播器
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				// 空实现
+				// 用于在实例化bean之前，做一些其他初始化bean的工作
 				onRefresh();
 
 				// Check for listener beans and register them.
+				// 在spring容器中，初始化各种监听器
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
+				// 预先实例化那些非延迟加载的bean
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
+				// 初始化生命周期处理器，并发出相应的事件进行通知
 				finishRefresh();
 			}
 
@@ -617,6 +631,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void prepareRefresh() {
 		// Switch to active.
+		// 设置容器初始化时间
 		this.startupDate = System.currentTimeMillis();
 		this.closed.set(false);
 		this.active.set(true);
@@ -631,6 +646,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		// 空实现，留给子类实现
+		// 目的是在上下文环境中，解析各种 ${}参数占位符
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
