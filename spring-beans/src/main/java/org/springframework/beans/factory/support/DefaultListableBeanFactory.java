@@ -907,6 +907,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return (this.configurationFrozen || super.isBeanEligibleForMetadataCaching(beanName));
 	}
 
+	/**
+	 * 在方法preInstantiateSingletons中，首先会遍历所有注册到Spring容器中的BeanDefinition，
+	 * 如果BeanDefinition的属性scope的值为singleton也就是单例的，同时属性lazyInit的值为false，
+	 * 说明该BeanDefinition对应的bean是不允许懒加载的单例。
+	 * @throws BeansException
+	 */
 	@Override
 	public void preInstantiateSingletons() throws BeansException {
 		if (logger.isTraceEnabled()) {
@@ -920,6 +926,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
+			// 如果bean不是抽象类， 是单例bean,同时lazy_init属性为false
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
@@ -941,6 +948,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
+					// 提前先从spring容器中， 通过getBean方法初始化这些bean
 					getBean(beanName);
 				}
 			}
