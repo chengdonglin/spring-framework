@@ -11,4 +11,6 @@
 	</bean>
 
 	<bean id="personPostProcessor" class="com.dmai.spring.bean.PersonPostProcessor"></bean>
+
+	<bean id="myListener" class="com.dmai.spring.bean.MyListener"></bean>
 </beans>

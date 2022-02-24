@@ -6,18 +6,24 @@ com/dmai/spring/MyClassPathXmlApplicationDemo.java
  com.dmai.spring.MyClassPathXmlApplicationDemo
 com/dmai/spring/bean/MyBeanFactoryPostProcessor.java
  com.dmai.spring.bean.MyBeanFactoryPostProcessor
-com/dmai/spring/MyBeanFactoryProcessorDemo.java
- com.dmai.spring.MyBeanFactoryProcessorDemo
+com/dmai/spring/bean/PersonPostProcessor.java
+ com.dmai.spring.bean.PersonPostProcessor
 com/dmai/spring/config/MainConfig.java
  com.dmai.spring.config.MainConfig
  com.dmai.spring.config.MainConfig$MyImportRegister
+com/dmai/spring/MyBeanFactoryProcessorDemo.java
+ com.dmai.spring.MyBeanFactoryProcessorDemo
+com/dmai/spring/PersonPostProcessDemo.java
+ com.dmai.spring.PersonPostProcessDemo
+com/dmai/spring/AnnotationMainTest.java
+ com.dmai.spring.AnnotationMainTest
 com/dmai/spring/bean/MyClassPathXmlApplication.java
  com.dmai.spring.bean.MyClassPathXmlApplication
 com/dmai/spring/MainTest.java
  com.dmai.spring.MainTest
-com/dmai/spring/AnnotationMainTest.java
- com.dmai.spring.AnnotationMainTest
-com/dmai/spring/bean/PersonPostProcessor.java
- com.dmai.spring.bean.PersonPostProcessor
-com/dmai/spring/PersonPostProcessDemo.java
- com.dmai.spring.PersonPostProcessDemo
+com/dmai/spring/bean/MyEvent.java
+ com.dmai.spring.bean.MyEvent
+com/dmai/spring/bean/MyListener.java
+ com.dmai.spring.bean.MyListener
+com/dmai/spring/ApplicationEventDemo.java
+ com.dmai.spring.ApplicationEventDemo
