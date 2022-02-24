@@ -9,4 +9,6 @@
 	<bean id="myBeanFactoryProcessor" class="com.dmai.spring.bean.MyBeanFactoryPostProcessor" >
 
 	</bean>
+
+	<bean id="personPostProcessor" class="com.dmai.spring.bean.PersonPostProcessor"></bean>
 </beans>

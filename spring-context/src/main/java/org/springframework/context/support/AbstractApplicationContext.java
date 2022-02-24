@@ -789,6 +789,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * 注册BeanPostProcessors,
+	 * BeanPostProcessor是对bean实例话的一个扩展，注册BeanPostProcessor可以控制Spring容器任何一个bean的实例化
 	 * Instantiate and register all BeanPostProcessor beans,
 	 * respecting explicit order if given.
 	 * <p>Must be called before any instantiation of application beans.

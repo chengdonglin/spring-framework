@@ -72,6 +72,7 @@ public interface BeanPostProcessor {
 	 */
 	@Nullable
 	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		// bean实例化前的后处理方法
 		return bean;
 	}
 
@@ -98,6 +99,7 @@ public interface BeanPostProcessor {
 	 */
 	@Nullable
 	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		// bean 实例化之后后处理方法
 		return bean;
 	}
 

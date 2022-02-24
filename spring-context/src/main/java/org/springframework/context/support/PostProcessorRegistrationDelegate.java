@@ -247,38 +247,51 @@ final class PostProcessorRegistrationDelegate {
 		// list of all declined PRs involving changes to PostProcessorRegistrationDelegate
 		// to ensure that your proposal does not result in a breaking change:
 		// https://github.com/spring-projects/spring-framework/issues?q=PostProcessorRegistrationDelegate+is%3Aclosed+label%3A%22status%3A+declined%22
-
+		// 获取容器beanFactory中， 所有的接口BeanPostProcessor类型的实现类
 		String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, true, false);
 
 		// Register BeanPostProcessorChecker that logs an info message when
 		// a bean is created during BeanPostProcessor instantiation, i.e. when
 		// a bean is not eligible for getting processed by all BeanPostProcessors.
+		// 得到最终容器bean后处理器的数量
+		// 容器中已注册的bean后处理器数量+ 即将要注册的后处理器BeanPostProcessChecker + 容器中还没有注册的数量
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 
 		// Separate between BeanPostProcessors that implement PriorityOrdered,
 		// Ordered, and the rest.
+		// 初始化一些集合
+		// 存放实现了接口PriorityOrdered的bean后处理器BeanPostProcessor
 		List<BeanPostProcessor> priorityOrderedPostProcessors = new ArrayList<>();
+		// 存放spring内部的bean后处理器BeanPostProcessor
 		List<BeanPostProcessor> internalPostProcessors = new ArrayList<>();
+		// 存放实现了接口Ordered的bean后处理器BeanPostProcessor的名称
 		List<String> orderedPostProcessorNames = new ArrayList<>();
+		// 存放无序的bean后处理器BeanPostProcessor的名称
 		List<String> nonOrderedPostProcessorNames = new ArrayList<>();
+		// 遍历所有后处理器BeanPostProcessor的名称
 		for (String ppName : postProcessorNames) {
 			if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {
 				BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);
+				// 添加实现了接口PriorityOrdered的bean后处理器名称
 				priorityOrderedPostProcessors.add(pp);
+				// spring内部的BeanPostProcessor,和实例化注解bean关系密切， 如@Autowired
 				if (pp instanceof MergedBeanDefinitionPostProcessor) {
 					internalPostProcessors.add(pp);
 				}
 			}
 			else if (beanFactory.isTypeMatch(ppName, Ordered.class)) {
+				// 添加实现了接口Ordered的bean后处理器
 				orderedPostProcessorNames.add(ppName);
 			}
 			else {
+				// 添加无序的bean后处理器
 				nonOrderedPostProcessorNames.add(ppName);
 			}
 		}
 
 		// First, register the BeanPostProcessors that implement PriorityOrdered.
+		// 排序
 		sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
 		registerBeanPostProcessors(beanFactory, priorityOrderedPostProcessors);
 
